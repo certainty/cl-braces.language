@@ -4,7 +4,7 @@
   :description "A compiler and virtual machine for a minimal go-like programming language, called `gone'"
   :author "David Krentzlin <david.krentzlin@gmail.com>"
   :maintainer "David Krentzlin <david.krentzlin@gmail.com>"
-  :source-control (:git "https://github.com/certainty/cl-braces.git")
+  :source-control (:git "https://github.com/certainty/cl-braces.language.git")
   :license "BSD"
   :version "1.0"
   :depends-on (:alexandria :serapeum :random-uuid :cl-ppcre :tmpdir)
@@ -90,7 +90,7 @@
    ))
 
 (defsystem "cl-braces.language/tests"
-  :depends-on (:lisp-unit2 :alexandria :cl-braces)
+  :depends-on (:lisp-unit2 :alexandria :cl-braces.language)
   :serial t
   :pathname "test"
   :components
