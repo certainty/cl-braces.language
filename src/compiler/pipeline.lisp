@@ -28,7 +28,7 @@
       (loop :for package :being :the :hash-keys :of packages
             :for package-ast = (gethash package packages)
             :do (compile-package workspace package-ast)
-            :finally (return (finalize-chunk code-generator))))))
+            :finally (return (codegen:finalize-chunk code-generator))))))
 
 (defun parse-packages (workspace)
   "Parses all packages in the workspace and returns a hash table mapping package names to their ASTs."

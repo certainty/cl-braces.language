@@ -76,7 +76,6 @@
           (terpri))
 
         (bytecode:with-opcodes-from-current-isa
-
           (loop
             (when (>= pc instruction-count)
               (return))

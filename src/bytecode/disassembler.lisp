@@ -48,7 +48,7 @@
   "Prints the label for the given instruction."
   (declare (ignore instr isa))
   (with-slots (block-labels) chunk
-    (gethash (label pc) block-labels)))
+    (gethash pc block-labels)))
 
 (defun column-encoded-instruction (instr isa)
   "Return the instruction it its encoded form. It's opcode followed by operands"
@@ -104,7 +104,7 @@
     (case op-type
       (register nil)
       (label
-       (a:when-let ((blocklabel (gethash (label value) block-labels)))
+       (a:when-let ((blocklabel (gethash value block-labels)))
          (format nil "~a = ~a" (format-operand value op-type) blocklabel)))
       (address
        (let ((constant (aref constants value)))
@@ -120,7 +120,7 @@
     ((runtime.value:closurep value)
      (with-slots (block-labels) chunk
        (let* ((label-address (runtime.value:closure-function-label value))
-              (blocklabel (gethash label-address block-labels)))
+              (blocklabel (gethash (operand-value label-address) block-labels)))
          (format nil ".~15a" blocklabel))))))
 
 (defun disass-constants (chunk &key (stream *standard-output*))

@@ -136,7 +136,7 @@
     (let* ((label-id (support:next-id label-ids))
            (label-name (format nil "~a_~a" prefix label-id))
            (address (bytecode:label (length instructions))))
-      (setf (gethash address block-labels) label-name)
+      (setf (gethash (bytecode:operand-value address) block-labels) label-name)
       (values address label-name))))
 
 ;;; will be used later in a different way

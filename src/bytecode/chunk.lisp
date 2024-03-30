@@ -18,7 +18,7 @@
 
 ;; A machine instruction as loaded and executed by the vm.
 (s:defconstructor instruction
-    (opcode opcode-t)
+  (opcode opcode-t)
   (operands (vector operand-t)))
 
 (defmethod print-object ((instruction instruction) stream)
@@ -26,6 +26,7 @@
     (format stream "INSTRUCTION OPCODE: ~A ~A" (instruction-opcode instruction) (instruction-operands instruction))))
 
 (deftype constant-table () '(vector runtime.value:<value>))
+
 
 (defclass chunk ()
   ((constants
@@ -41,7 +42,7 @@
    (block-labels
     :reader chunk-block-labels
     :initarg :block-labels
-    :initform (make-hash-table :test #'equalp)
+    :initform (make-hash-table :test #'operand=)
     :type hash-table)
    (registers-used
     :reader chunk-registers-used
