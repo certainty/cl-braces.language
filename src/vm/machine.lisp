@@ -15,7 +15,6 @@
     :initarg :call-stack
     :initform nil)
    (chunk
-    :initform nil
     :type bytecode:chunk)))
 
 (defun make-machine (&key (stack-size *STACK-SIZE*))
@@ -32,13 +31,13 @@
          ,@body))))
 
 (defmacro binary-op (operation instruction registers)
-  `(with-operands (dst lhs rhs) instruction
+  `(with-operands (dst lhs rhs) ,instruction
      (setf (aref ,registers dst)
            (runtime.value:box (,operation (runtime.value:unbox (aref ,registers lhs))
                                           (runtime.value:unbox (aref ,registers rhs)))))))
 
 (defmacro unary-op (operation instruction registers)
-  `(with-operands (dst src) instruction
+  `(with-operands (dst src) ,instruction
      (setf (aref ,registers dst) (runtime.value:box (,operation (runtime.value:unbox (aref ,registers src)))))))
 
 (defun run (machine chunk)

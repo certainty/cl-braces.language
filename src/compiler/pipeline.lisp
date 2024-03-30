@@ -25,6 +25,7 @@
   (with-slots (package-asts code-generator) workspace
     (let ((packages (parse-packages workspace)))
       (setf package-asts packages)
+      ;; TODO: we need to sort packages topologically by their dependencies before compiling them
       (loop :for package :being :the :hash-keys :of packages
             :for package-ast = (gethash package packages)
             :do (compile-package workspace package-ast)
