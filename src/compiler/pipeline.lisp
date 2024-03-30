@@ -18,7 +18,7 @@
   "Compiles the provided module and returns the resulting bytecode chunk.
    `module-name` is the name of the module to compile and all imports in packages of that module will be resolved relative to `module-root`,
    and must contain the `module-name` as a prefix."
-  (compile (make-workspace module-name module-root) :fail-fast fail-fast))
+  (compile (make-workspace module-name module-root :fail-fast-p fail-fast)))
 
 (defun compile (workspace)
   "Compiles all source files in the provided workspace"
@@ -85,4 +85,4 @@
 (defun pass-code-generation (workspace ast)
   "Generates the bytecode chunk for the AST"
   (with-slots (code-generator) workspace
-    (codegen:generate codegen-generator ast)))
+    (codegen:generate code-generator ast)))

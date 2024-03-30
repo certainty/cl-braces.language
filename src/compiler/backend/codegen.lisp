@@ -140,7 +140,7 @@
       (values address label-name))))
 
 ;;; will be used later in a different way
-(defun finalize-chunk (generator ast)
+(defun finalize-chunk (generator)
   (let ((entrypoint nil))
     (with-slots (instructions constants main-function block-labels) generator
       (when main-function
