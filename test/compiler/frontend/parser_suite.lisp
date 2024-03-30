@@ -15,9 +15,11 @@
   (parse input #'parser::<statement-list))
 
 (defun parse (input production)
-  (let ((node-ids (support:make-id-generator))
-        (node-spans (span:make-span-map)))
-    (parser:parse (scan-input input) node-ids node-spans :production production)))
+  (let* ((node-ids (support:make-id-generator))
+         (node-spans (span:make-span-map))
+         (tokens (scan-input input))
+         (parser (parser:make-parser tokens node-ids node-spans)))
+    (parser:parse parser :production production)))
 
 (define-test parse-integer-literal ()
   "Parse an integer literal"

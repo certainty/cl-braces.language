@@ -95,6 +95,7 @@
   :pathname "test"
   :components
   ((:file "packages")
+   (:file "helper")
    (:file "snapshot_tests")
    (:file "runner")
    (:module "compiler"

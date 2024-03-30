@@ -1,5 +1,11 @@
 (in-package :cl-user)
 
+(defpackage :cl-braces.tests.helper
+  (:use :cl)
+  (:nicknames :helper)
+  (:export
+   #:compile-fixture-module))
+
 (defpackage :cl-braces.tests.runner
   (:use :cl :lisp-unit2)
   (:export
